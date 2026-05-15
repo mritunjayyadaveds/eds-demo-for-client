@@ -16,7 +16,7 @@ export default function decorate(block) {
 
     const tab = document.createElement('button');
     tab.className = 'tabs-tab';
-    if (idx === 0) tab.classList.add('tabs-tab--active');
+    if (idx === 0) tab.classList.add('tabs-tab-active');
     if (img) {
       const tabImg = document.createElement('img');
       tabImg.src = img.src;
@@ -29,7 +29,7 @@ export default function decorate(block) {
 
     const panel = document.createElement('div');
     panel.className = 'tabs-panel';
-    if (idx === 0) panel.classList.add('tabs-panel--active');
+    if (idx === 0) panel.classList.add('tabs-panel-active');
 
     if (content) {
       const panelInner = document.createElement('div');
@@ -75,10 +75,10 @@ export default function decorate(block) {
     }
 
     tab.addEventListener('click', () => {
-      block.querySelectorAll('.tabs-tab').forEach((t) => t.classList.remove('tabs-tab--active'));
-      block.querySelectorAll('.tabs-panel').forEach((p) => p.classList.remove('tabs-panel--active'));
-      tab.classList.add('tabs-tab--active');
-      panel.classList.add('tabs-panel--active');
+      block.querySelectorAll('.tabs-tab').forEach((t) => t.classList.remove('tabs-tab-active'));
+      block.querySelectorAll('.tabs-panel').forEach((p) => p.classList.remove('tabs-panel-active'));
+      tab.classList.add('tabs-tab-active');
+      panel.classList.add('tabs-panel-active');
     });
 
     tabBar.append(tab);
