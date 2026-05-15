@@ -1,0 +1,150 @@
+.tabs-container .tabs-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.tabs-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.tabs-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.tabs-tab {
+  flex-shrink: 0;
+  padding: 16px 24px;
+  background: #f7f8fa;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  font-family: inherit;
+  margin: 0;
+}
+
+.tabs-tab:hover {
+  background: #eef0f4;
+}
+
+.tabs-tab--active {
+  border-color: #0f1119;
+  background: #fff;
+}
+
+.tabs-tab-img {
+  height: 32px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.tabs-panel {
+  display: none;
+}
+
+.tabs-panel--active {
+  display: block;
+}
+
+.tabs-panel-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  background: #f7f8fa;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.tabs-panel-main {
+  flex: 1;
+}
+
+.tabs-panel-main p:first-child {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6a7282;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.tabs-panel-main h3 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #101828;
+  margin: 0 0 16px;
+  line-height: 1.2;
+}
+
+.tabs-panel-main p {
+  font-size: 15px;
+  color: #475467;
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+
+.tabs-panel-main a {
+  color: #101828;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tabs-panel-main a:hover {
+  text-decoration: underline;
+}
+
+.tabs-panel-stats {
+  display: flex;
+  gap: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.tabs-stat-val {
+  font-size: 36px;
+  font-weight: 900;
+  color: #101828;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.tabs-stat-label {
+  font-size: 14px;
+  color: #6a7282;
+  line-height: 1.5;
+  max-width: 280px;
+}
+
+@media (width >= 900px) {
+  .tabs-panel-inner {
+    flex-direction: row;
+    padding: 48px;
+  }
+
+  .tabs-panel-main {
+    flex: 1.2;
+  }
+
+  .tabs-panel-stats {
+    flex: 0.8;
+    flex-direction: column;
+    border-top: none;
+    border-left: 1px solid #e5e7eb;
+    padding-top: 0;
+    padding-left: 32px;
+  }
+
+  .tabs-tab-img {
+    height: 40px;
+  }
+}

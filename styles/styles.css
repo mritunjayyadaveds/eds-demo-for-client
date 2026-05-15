@@ -255,3 +255,42 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+main .section.dark {
+  background-color: #0f1119;
+  color: #fff;
+  margin: 0;
+  padding: 48px 0;
+}
+
+main .section.dark h2 {
+  color: #fff;
+}
+
+main .section.dark p {
+  color: rgb(255 255 255 / 65%);
+}
+
+main .section.dark a:any-link {
+  color: rgb(255 255 255 / 80%);
+}
+
+main .section.grey {
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 48px 0;
+}
+
+/* eyebrow pattern */
+main .section > div > p:first-child {
+  font-size: 14px;
+  font-weight: 600;
+  color: #707070;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+main .section.dark > div > p:first-child {
+  color: #707070;
+}
