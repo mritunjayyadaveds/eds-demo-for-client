@@ -13,8 +13,13 @@ header .nav-wrapper.nav-scrolled {
   box-shadow: 0 2px 12px rgb(0 0 0 / 8%);
 }
 
-/* Reset section styles from global CSS inside header */
+/* Reset section wrappers inside header */
 header nav .section {
+  margin: 0;
+  padding: 0;
+}
+
+header nav .default-content-wrapper {
   margin: 0;
   padding: 0;
 }
@@ -98,26 +103,22 @@ header .nav-sections .default-content-wrapper > ul > li > a {
   gap: 6px;
 }
 
-header .nav-sections .default-content-wrapper > ul > li > a:hover {
-  color: #111827;
-}
-
 /* ===== Dropdown Trigger ===== */
-header .nav-sections .nav-drop-trigger {
+header .nav-drop-trigger {
   cursor: pointer;
 }
 
-header .nav-sections .nav-drop-trigger svg {
+header .nav-drop-trigger svg {
   transition: transform 0.25s ease;
   flex-shrink: 0;
 }
 
-header .nav-sections .nav-drop[aria-expanded='true'] .nav-drop-trigger svg {
+header .nav-drop[aria-expanded='true'] .nav-drop-trigger svg {
   transform: rotate(180deg);
 }
 
 /* ===== Dropdown Panel ===== */
-header .nav-sections .nav-dropdown {
+header .nav-dropdown {
   display: none;
   position: absolute;
   top: calc(100% + 12px);
@@ -132,7 +133,7 @@ header .nav-sections .nav-dropdown {
   z-index: 200;
 }
 
-header .nav-sections .nav-dropdown::before {
+header .nav-dropdown::before {
   content: '';
   position: absolute;
   top: -6px;
@@ -145,16 +146,16 @@ header .nav-sections .nav-dropdown::before {
   transform: rotate(45deg);
 }
 
-header .nav-sections .nav-drop[aria-expanded='true'] .nav-dropdown {
+header .nav-drop[aria-expanded='true'] .nav-dropdown {
   display: block;
   animation: dropdown-fade-in 0.2s ease;
 }
 
-header .nav-sections .nav-drop[aria-expanded='true'] .nav-dropdown li {
+header .nav-drop[aria-expanded='true'] .nav-dropdown li {
   padding: 0;
 }
 
-header .nav-sections .nav-drop[aria-expanded='true'] .nav-dropdown li a {
+header .nav-drop[aria-expanded='true'] .nav-dropdown li a {
   display: block;
   padding: 10px 20px;
   font-size: 14px;
@@ -163,7 +164,7 @@ header .nav-sections .nav-drop[aria-expanded='true'] .nav-dropdown li a {
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
-header .nav-sections .nav-drop[aria-expanded='true'] .nav-dropdown li a:hover {
+header .nav-drop[aria-expanded='true'] .nav-dropdown li a:hover {
   background-color: #f3f4f6;
   color: #111827;
 }
@@ -219,18 +220,18 @@ header .nav-tools .nav-login:hover {
 }
 
 header .nav-tools .nav-sep {
-  color: #d1d5db;
+  color: #99a1af;
   font-size: 14px;
   user-select: none;
 }
 
 header .nav-tools .nav-contact {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: #364153;
   border: 1px solid #e5e7eb;
   border-radius: 999px;
-  padding: 6px 16px;
+  padding: 5px 14px;
   background: none;
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   display: inline-flex;
@@ -278,7 +279,7 @@ header .nav-hamburger .hamburger-line {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Hamburger → X animation */
+/* Hamburger to X animation */
 header .nav-hamburger[aria-expanded='true'] .hamburger-line:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -291,7 +292,7 @@ header .nav-hamburger[aria-expanded='true'] .hamburger-line:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ===== Mobile Menu Drawer ===== */
+/* ===== Mobile Drawer ===== */
 header nav[aria-expanded='true'] .nav-sections {
   display: block;
   position: fixed;
@@ -324,7 +325,8 @@ header nav[aria-expanded='true'] .nav-sections .default-content-wrapper > ul > l
 
 /* stylelint-enable no-descending-specificity */
 
-header nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .nav-dropdown {
+/* Mobile dropdown — inline expand */
+header nav[aria-expanded='true'] .nav-drop[aria-expanded='true'] .nav-dropdown {
   position: static;
   border: none;
   border-radius: 0;
@@ -334,16 +336,16 @@ header nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .
   animation: none;
 }
 
-header nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .nav-dropdown::before {
+header nav[aria-expanded='true'] .nav-drop[aria-expanded='true'] .nav-dropdown::before {
   display: none;
 }
 
-header nav[aria-expanded='true'] .nav-sections .nav-drop[aria-expanded='true'] .nav-dropdown li a {
+header nav[aria-expanded='true'] .nav-drop[aria-expanded='true'] .nav-dropdown li a {
   padding: 10px 0;
   font-size: 15px;
 }
 
-/* Mobile tools section inside drawer */
+/* Mobile tools — pinned to bottom */
 header nav[aria-expanded='true'] .nav-tools {
   display: flex;
   position: fixed;
@@ -369,7 +371,7 @@ header nav[aria-expanded='true'] .nav-tools {
   }
 }
 
-/* ===== Desktop (min-width: 900px) ===== */
+/* ===== Desktop (>= 900px) ===== */
 @media (width >= 900px) {
   header nav {
     padding: 0 40px;
@@ -402,7 +404,7 @@ header nav[aria-expanded='true'] .nav-tools {
   }
 }
 
-/* ===== Tablet adjustments ===== */
+/* ===== Tablet (900–1200px) ===== */
 @media (width >= 900px) and (width < 1200px) {
   header nav {
     gap: 24px;
@@ -430,13 +432,13 @@ header nav[aria-expanded='true'] .nav-tools {
   }
 }
 
-/* ===== Focus styles for accessibility ===== */
+/* ===== Focus styles ===== */
 /* stylelint-disable no-descending-specificity */
+header .nav-brand a:focus-visible,
 header .nav-sections .default-content-wrapper a:focus-visible,
 header .nav-tools a:focus-visible,
-header .nav-brand a:focus-visible,
 header .nav-hamburger:focus-visible,
-header .nav-sections .nav-drop-trigger:focus-visible {
+header .nav-drop-trigger:focus-visible {
   outline: 2px solid #3b63fb;
   outline-offset: 2px;
   border-radius: 2px;
@@ -448,14 +450,14 @@ header .nav-sections .nav-drop-trigger:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   header .nav-wrapper,
   header .nav-hamburger .hamburger-line,
-  header .nav-sections .nav-drop-trigger svg,
-  header .nav-sections .nav-dropdown,
+  header .nav-drop-trigger svg,
+  header .nav-dropdown,
   header .nav-tools .nav-contact {
     transition: none;
   }
 
   header nav[aria-expanded='true'] .nav-sections,
-  header .nav-sections .nav-drop[aria-expanded='true'] .nav-dropdown {
+  header .nav-drop[aria-expanded='true'] .nav-dropdown {
     animation: none;
   }
 }

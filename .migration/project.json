@@ -1,4 +1,6 @@
 {
   "previewOrg": "mritunjayyadaveds",
-  "previewSite": "eds-demo-for-client"
+  "previewSite": "eds-demo-for-client",
+  "type": "xwalk",
+  "contentHostUrl": "author-p34454-e1943728.adobeaemcloud.com"
 }
