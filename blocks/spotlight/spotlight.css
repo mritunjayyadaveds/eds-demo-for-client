@@ -6,9 +6,9 @@
 
 /* ===== Spotlight Section ===== */
 .spotlight {
-  background-color: #fff;
-  color: #101828;
-  padding: 48px 24px 0;
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
   position: relative;
   overflow: visible;
 }
@@ -27,7 +27,7 @@
 .spotlight .spotlight-headline {
   font-size: 32px;
   font-weight: 900;
-  color: #101828;
+  color: #fff;
   line-height: 1.1;
   margin: 0 0 12px;
 }
@@ -36,7 +36,7 @@
 .spotlight .spotlight-body {
   font-size: 15px;
   font-weight: 400;
-  color: #6a7282;
+  color: rgb(255 255 255 / 65%);
   line-height: 1.75;
   margin: 0 0 20px;
 }
