@@ -65,18 +65,17 @@ export default function decorate(block) {
 
   rows.forEach((row) => {
     const cols = [...row.children];
-    const firstCol = cols[0];
-    const picture = firstCol?.querySelector('picture');
-    const h2 = firstCol?.querySelector('h2');
-    const h1 = firstCol?.querySelector('h1');
+    const picture = row.querySelector('picture');
+    const h2 = row.querySelector('h2');
+    const h1 = row.querySelector('h1');
 
     if (picture) {
-      const label = cols[1]?.textContent?.trim() || '';
+      const label = cols[1]?.textContent?.trim() || cols[0]?.textContent?.trim() || '';
       cardData.push({ picture, label });
     } else if (h2 || h1) {
       headlineEl = h2 || h1;
     } else {
-      const text = firstCol?.textContent?.trim();
+      const text = cols[1]?.textContent?.trim() || cols[0]?.textContent?.trim();
       if (!text) return;
       if (!eyebrowText && !headlineEl && text.length < 60) {
         eyebrowText = text;

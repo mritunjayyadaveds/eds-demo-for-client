@@ -83,8 +83,11 @@ export default function decorate(block) {
     content.append(h1);
   }
 
+  const ctaItems = allContent.filter(
+    (el) => el !== eyebrow && el !== h1 && el.querySelector('a'),
+  );
   const descItems = allContent.filter(
-    (el) => el !== eyebrow && el !== h1 && !el.querySelector('.button'),
+    (el) => el !== eyebrow && el !== h1 && !el.querySelector('a'),
   );
   descItems.forEach((desc, i) => {
     desc.className = 'hero-description hero-fade-up';
@@ -92,14 +95,16 @@ export default function decorate(block) {
     content.append(desc);
   });
 
-  const buttons = block.querySelectorAll('a') || contentRow?.querySelectorAll('a');
-  if (buttons.length > 0) {
+  if (ctaItems.length > 0) {
     const ctaContainer = document.createElement('div');
     ctaContainer.className = 'hero-cta-group hero-fade-up';
     ctaContainer.style.animationDelay = '976ms';
-    buttons.forEach((btn, i) => {
-      btn.className = i === 0 ? 'hero-cta hero-cta-primary' : 'hero-cta hero-cta-secondary';
-      ctaContainer.append(btn);
+    ctaItems.forEach((item) => {
+      const link = item.querySelector('a');
+      if (link) {
+        link.className = 'hero-cta hero-cta-primary';
+        ctaContainer.append(link);
+      }
     });
     content.append(ctaContainer);
   }
