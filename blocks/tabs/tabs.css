@@ -1,50 +1,79 @@
 .tabs-container .tabs-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 40px;
 }
 
+/* Tab bar */
 .tabs-bar {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 32px;
-  overflow-x: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.tabs-bar::-webkit-scrollbar {
-  display: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 48px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px 4px 0 0;
+  overflow: hidden;
 }
 
 .tabs-tab {
-  flex-shrink: 0;
-  padding: 16px 24px;
-  background: #f7f8fa;
-  border: 2px solid transparent;
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #f9fafb;
+  border: none;
+  border-right: 1px solid #e5e7eb;
+  border-radius: 0;
   cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: background-color 0.2s ease;
   font-family: inherit;
   margin: 0;
+  position: relative;
+  min-height: 120px;
+}
+
+.tabs-tab:last-child {
+  border-right: none;
 }
 
 .tabs-tab:hover {
-  background: #eef0f4;
+  background: #f0f2f5;
 }
 
 .tabs-tab-active {
-  border-color: #0f1119;
   background: #fff;
 }
 
-.tabs-tab-img {
-  height: 32px;
-  width: auto;
-  display: block;
-  object-fit: contain;
+.tabs-tab-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #00c4d4;
 }
 
+.tabs-tab-img {
+  height: 80px;
+  width: auto;
+  max-width: 180px;
+  display: block;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.tabs-tab-active .tabs-tab-img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.tabs-tab:hover .tabs-tab-img {
+  opacity: 0.8;
+}
+
+/* Panels */
 .tabs-panel {
   display: none;
 }
@@ -68,9 +97,6 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  background: #f7f8fa;
-  border-radius: 12px;
-  padding: 32px;
 }
 
 .tabs-panel-main {
@@ -78,40 +104,53 @@
 }
 
 .tabs-panel-main p {
-  font-size: 15px;
+  font-size: 16px;
   color: #475467;
-  line-height: 1.7;
+  line-height: 1.75;
   margin: 0 0 12px;
 }
 
 .tabs-panel-main p:first-child {
   font-size: 13px;
-  font-weight: 600;
-  color: #6a7282;
+  font-weight: 700;
+  color: #00c4f8;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 4px;
 }
 
 .tabs-panel-main h3 {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 800;
   color: #101828;
   margin: 0 0 16px;
   line-height: 1.2;
+  letter-spacing: -0.5px;
 }
 
-.tabs-panel-main a {
-  color: #101828;
-  font-weight: 600;
-  text-decoration: none;
+.tabs-panel-main .button-container {
+  margin-top: 8px;
+}
+
+.tabs-panel-main .button-container .button {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  color: #00c4f8;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
 }
 
-.tabs-panel-main a:hover {
-  text-decoration: underline;
+.tabs-panel-main .button-container .button:hover {
+  color: #009cc7;
+  background: none;
+  text-decoration: none;
 }
 
 .tabs-panel-stats {
@@ -121,8 +160,13 @@
   border-top: 1px solid #e5e7eb;
 }
 
+.tabs-stat {
+  padding-left: 20px;
+  border-left: 3px solid #e5e7eb;
+}
+
 .tabs-stat-val {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 900;
   color: #101828;
   line-height: 1.1;
@@ -139,7 +183,7 @@
 @media (width >= 900px) {
   .tabs-panel-inner {
     flex-direction: row;
-    padding: 48px;
+    gap: 48px;
   }
 
   .tabs-panel-main {
@@ -148,14 +192,45 @@
 
   .tabs-panel-stats {
     flex: 0.8;
-    flex-direction: column;
+    flex-direction: row;
     border-top: none;
-    border-left: 1px solid #e5e7eb;
     padding-top: 0;
-    padding-left: 32px;
+    gap: 32px;
   }
 
   .tabs-tab-img {
-    height: 40px;
+    height: 96px;
+  }
+}
+
+@media (width <= 768px) {
+  .tabs-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tabs-tab {
+    min-height: 80px;
+    padding: 16px;
+  }
+
+  .tabs-tab-img {
+    height: 48px;
+  }
+
+  .tabs-tab:nth-child(2) {
+    border-right: none;
+  }
+
+  .tabs-tab:nth-child(1),
+  .tabs-tab:nth-child(2) {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .tabs-panel-main h3 {
+    font-size: 24px;
+  }
+
+  .tabs-stat-val {
+    font-size: 24px;
   }
 }
