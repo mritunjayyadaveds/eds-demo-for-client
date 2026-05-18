@@ -1,7 +1,7 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const items = [...block.children].filter((row) => row.textContent.trim() || row.querySelector('picture'));
+  const rows = [...block.children].filter((row) => row.textContent.trim() || row.querySelector('picture'));
 
   const tabBar = document.createElement('div');
   tabBar.className = 'tabs-bar';
@@ -9,22 +9,22 @@ export default function decorate(block) {
   const panelContainer = document.createElement('div');
   panelContainer.className = 'tabs-panels';
 
-  items.forEach((row, idx) => {
+  rows.forEach((row, idx) => {
     const cols = [...row.children];
-    const img = cols[0]?.querySelector('img');
-    const content = cols[1];
+    const imgCol = cols[0];
+    const contentCol = cols[1];
+    const img = imgCol?.querySelector('img');
 
     const tab = document.createElement('button');
     tab.className = 'tabs-tab';
     if (idx === 0) tab.classList.add('tabs-tab-active');
+
     if (img) {
-      const tabImg = document.createElement('img');
-      tabImg.src = img.src;
-      tabImg.alt = img.alt || '';
+      const tabImg = img.cloneNode(true);
       tabImg.className = 'tabs-tab-img';
       tab.append(tabImg);
     } else {
-      tab.textContent = content?.querySelector('h3')?.textContent || `Tab ${idx + 1}`;
+      tab.textContent = contentCol?.querySelector('h3')?.textContent || `Tab ${idx + 1}`;
     }
 
     const panel = document.createElement('div');
@@ -32,19 +32,20 @@ export default function decorate(block) {
     if (idx === 0) panel.classList.add('tabs-panel-active');
     moveInstrumentation(row, panel);
 
-    if (content) {
-      const panelInner = document.createElement('div');
-      panelInner.className = 'tabs-panel-inner';
+    const panelInner = document.createElement('div');
+    panelInner.className = 'tabs-panel-inner';
 
-      const mainContent = document.createElement('div');
-      mainContent.className = 'tabs-panel-main';
-      moveInstrumentation(content, mainContent);
+    const mainContent = document.createElement('div');
+    mainContent.className = 'tabs-panel-main';
 
-      const statsContent = document.createElement('div');
-      statsContent.className = 'tabs-panel-stats';
+    const statsContent = document.createElement('div');
+    statsContent.className = 'tabs-panel-stats';
 
-      const children = [...content.children];
+    if (contentCol) {
+      moveInstrumentation(contentCol, mainContent);
+      const children = [...contentCol.children];
       let statsMode = false;
+
       children.forEach((el) => {
         const text = el.textContent.trim();
         const strong = el.querySelector('strong');
@@ -70,11 +71,11 @@ export default function decorate(block) {
           mainContent.append(el);
         }
       });
-
-      panelInner.append(mainContent);
-      if (statsContent.children.length > 0) panelInner.append(statsContent);
-      panel.append(panelInner);
     }
+
+    panelInner.append(mainContent);
+    if (statsContent.children.length > 0) panelInner.append(statsContent);
+    panel.append(panelInner);
 
     tab.addEventListener('click', () => {
       block.querySelectorAll('.tabs-tab').forEach((t) => t.classList.remove('tabs-tab-active'));

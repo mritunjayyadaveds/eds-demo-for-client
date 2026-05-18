@@ -53,6 +53,17 @@
   display: block;
 }
 
+.tabs[data-aue-resource] .tabs-panel {
+  display: block;
+}
+
+.tabs[data-aue-resource] .tabs-panel:not(.tabs-panel-active) {
+  opacity: 0.4;
+  border-top: 1px dashed #ccc;
+  padding-top: 16px;
+  margin-top: 16px;
+}
+
 .tabs-panel-inner {
   display: flex;
   flex-direction: column;
