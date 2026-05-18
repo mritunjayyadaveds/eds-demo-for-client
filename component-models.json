@@ -211,14 +211,14 @@
     "fields": [
       {
         "component": "richtext",
-        "name": "heading",
-        "label": "Heading",
+        "name": "title",
+        "label": "Title",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "name": "text",
-        "label": "Text",
+        "name": "description",
+        "label": "Description",
         "valueType": "string"
       }
     ]
@@ -252,13 +252,13 @@
     "fields": [
       {
         "component": "richtext",
-        "name": "value",
+        "name": "title",
         "label": "Value",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "name": "label",
+        "name": "description",
         "label": "Label",
         "valueType": "string"
       }
@@ -269,13 +269,13 @@
     "fields": [
       {
         "component": "richtext",
-        "name": "label",
+        "name": "title",
         "label": "Label",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "name": "buttonText",
+        "name": "description",
         "label": "Button Text",
         "valueType": "string"
       }
