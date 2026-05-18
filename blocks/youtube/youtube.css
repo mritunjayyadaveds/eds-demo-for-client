@@ -8,6 +8,10 @@
   background: #000;
 }
 
+.two-columns .youtube-player {
+  max-width: 100%;
+}
+
 .youtube-player iframe {
   position: absolute;
   top: 0;
