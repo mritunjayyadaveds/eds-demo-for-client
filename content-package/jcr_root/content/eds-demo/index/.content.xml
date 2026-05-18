@@ -9,7 +9,7 @@
       </section>
 
       <!-- Section 2: Executive Spotlight (dark) -->
-      <section_1 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/section/v1/section" model="section" modelFields="[name,style]" name="Executive Spotlight" style="[dark]">
+      <section_1 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/section/v1/section" model="section" modelFields="[name,style]" name="Executive Spotlight">
         <spotlight jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block" name="Spotlight" model="spotlight" filter="spotlight">
           <item_0 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Spotlight Item" model="spotlight-item" modelFields="[image,imageAlt,text]" text="&lt;p&gt;Executive Spotlight&lt;/p&gt;"/>
           <item_1 jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block/item" name="Spotlight Item" model="spotlight-item" modelFields="[image,imageAlt,text]" text="&lt;h2&gt;Inside SEI:&lt;/h2&gt;"/>

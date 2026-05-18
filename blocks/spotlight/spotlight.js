@@ -1,3 +1,5 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
 function buildPlayButton() {
   const btn = document.createElement('button');
   btn.className = 'spotlight-card-play';
@@ -76,7 +78,7 @@ export default function decorate(block) {
 
     if (picture) {
       const label = cols[1]?.textContent?.trim() || cols[0]?.textContent?.trim() || '';
-      cardData.push({ picture, label });
+      cardData.push({ picture, label, row });
     } else if (h2 || h1) {
       headlineEl = h2 || h1;
     } else {
@@ -117,6 +119,7 @@ export default function decorate(block) {
       const cardEl = document.createElement('div');
       cardEl.className = 'spotlight-card';
       if (i === 0) cardEl.classList.add('spotlight-card--active');
+      if (card.row) moveInstrumentation(card.row, cardEl);
 
       const img = card.picture.querySelector('img');
       if (img) {

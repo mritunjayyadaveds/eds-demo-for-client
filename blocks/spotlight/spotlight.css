@@ -4,6 +4,12 @@
   padding: 0;
 }
 
+/* ===== Spotlight Container ===== */
+.spotlight-container {
+  background-color: #fff;
+  color: #101828;
+}
+
 /* ===== Spotlight Section ===== */
 .spotlight {
   background-color: transparent;
@@ -27,7 +33,7 @@
 .spotlight .spotlight-headline {
   font-size: 32px;
   font-weight: 900;
-  color: #fff;
+  color: #101828;
   line-height: 1.1;
   margin: 0 0 12px;
 }
@@ -36,7 +42,7 @@
 .spotlight .spotlight-body {
   font-size: 15px;
   font-weight: 400;
-  color: rgb(255 255 255 / 65%);
+  color: #6a7282;
   line-height: 1.75;
   margin: 0 0 20px;
 }
@@ -48,6 +54,7 @@
 }
 
 /* ===== Reveal Animation ===== */
+/* stylelint-disable no-descending-specificity */
 .spotlight.sei-reveal:not(.sei-revealed) .spotlight-eyebrow,
 .spotlight.sei-reveal:not(.sei-revealed) .spotlight-headline,
 .spotlight.sei-reveal:not(.sei-revealed) .spotlight-body,
@@ -71,6 +78,8 @@
 .spotlight.sei-revealed .spotlight-carousel-outer {
   animation: spotlight-reveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
 }
+
+/* stylelint-enable no-descending-specificity */
 
 @keyframes spotlight-reveal {
   from {
