@@ -15,7 +15,12 @@
       "hero",
       "cards",
       "columns",
-      "fragment"
+      "fragment",
+      "spotlight",
+      "accordion",
+      "tabs",
+      "stats",
+      "subscribe"
     ]
   },
   {
@@ -37,6 +42,36 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "spotlight",
+    "components": [
+      "spotlight-item"
+    ]
+  },
+  {
+    "id": "accordion",
+    "components": [
+      "accordion-item"
+    ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "tab-item"
+    ]
+  },
+  {
+    "id": "stats",
+    "components": [
+      "stat-item"
+    ]
+  },
+  {
+    "id": "subscribe",
+    "components": [
+      "subscribe-item"
     ]
   }
 ]
