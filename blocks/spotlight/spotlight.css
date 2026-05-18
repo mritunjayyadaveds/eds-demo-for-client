@@ -48,10 +48,10 @@
 }
 
 /* ===== Reveal Animation ===== */
-.spotlight.sei-reveal .spotlight-eyebrow,
-.spotlight.sei-reveal .spotlight-headline,
-.spotlight.sei-reveal .spotlight-body,
-.spotlight.sei-reveal .spotlight-carousel-outer {
+.spotlight.sei-reveal:not(.sei-revealed) .spotlight-eyebrow,
+.spotlight.sei-reveal:not(.sei-revealed) .spotlight-headline,
+.spotlight.sei-reveal:not(.sei-revealed) .spotlight-body,
+.spotlight.sei-reveal:not(.sei-revealed) .spotlight-carousel-outer {
   opacity: 0;
   transform: translateY(24px);
 }

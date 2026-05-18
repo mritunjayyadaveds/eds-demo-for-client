@@ -50,6 +50,11 @@ function initReveal(block) {
     { threshold: 0.1 },
   );
   observer.observe(block);
+  setTimeout(() => {
+    if (!block.classList.contains('sei-revealed')) {
+      block.classList.add('sei-revealed');
+    }
+  }, 300);
 }
 
 export default function decorate(block) {
