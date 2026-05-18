@@ -2,5 +2,9 @@
   "previewOrg": "mritunjayyadaveds",
   "previewSite": "eds-demo-for-client",
   "type": "xwalk",
-  "contentHostUrl": "author-p34454-e1943728.adobeaemcloud.com"
+  "contentHostUrl": "author-p34454-e1943728.adobeaemcloud.com",
+  "aemSitePath": "/content/eds-demo",
+  "aemAssetsFolderPath": "/content/dam/eds-demo",
+  "aemSiteName": "eds-demo",
+  "aemSiteTitle": "EDS Demo"
 }
