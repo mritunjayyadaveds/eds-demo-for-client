@@ -280,5 +280,29 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "spotlight",
+    "fields": []
+  },
+  {
+    "id": "accordion",
+    "fields": []
+  },
+  {
+    "id": "tabs",
+    "fields": []
+  },
+  {
+    "id": "stats",
+    "fields": []
+  },
+  {
+    "id": "subscribe",
+    "fields": []
+  },
+  {
+    "id": "cards",
+    "fields": []
   }
 ]
