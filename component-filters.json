@@ -38,7 +38,9 @@
       "text",
       "image",
       "button",
-      "title"
+      "title",
+      "youtube",
+      "countries"
     ]
   }
 ]
