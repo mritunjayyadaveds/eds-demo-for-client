@@ -11,36 +11,50 @@ export default async function decorate(block) {
     const data = await resp.json();
 
     const sorted = data.sort((a, b) => a.name.common.localeCompare(b.name.common));
-    const countries = sorted.slice(0, 10);
 
     loading.remove();
 
-    const grid = document.createElement('div');
-    grid.className = 'countries-grid';
+    const wrapper = document.createElement('div');
+    wrapper.className = 'countries-dropdown-wrapper';
 
-    countries.forEach((country, index) => {
-      const card = document.createElement('div');
-      card.className = 'countries-card';
+    const label = document.createElement('label');
+    label.className = 'countries-label';
+    label.setAttribute('for', 'countries-select');
+    label.textContent = 'Select a Country';
 
-      const number = document.createElement('span');
-      number.className = 'countries-number';
-      number.textContent = `${index + 1}`;
+    const select = document.createElement('select');
+    select.className = 'countries-select';
+    select.id = 'countries-select';
 
-      const name = document.createElement('span');
-      name.className = 'countries-name';
-      name.textContent = country.name.common;
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Choose a country...';
+    defaultOption.disabled = true;
+    defaultOption.selected = true;
+    select.append(defaultOption);
 
-      const official = document.createElement('span');
-      official.className = 'countries-official';
-      official.textContent = country.name.official;
-
-      card.append(number);
-      card.append(name);
-      card.append(official);
-      grid.append(card);
+    sorted.forEach((country) => {
+      const option = document.createElement('option');
+      option.value = country.name.common;
+      option.textContent = country.name.common;
+      select.append(option);
     });
 
-    block.append(grid);
+    const info = document.createElement('div');
+    info.className = 'countries-info';
+    info.textContent = `${sorted.length} countries available`;
+
+    select.addEventListener('change', () => {
+      const selected = sorted.find((c) => c.name.common === select.value);
+      if (selected) {
+        info.textContent = `${selected.name.common} — ${selected.name.official}`;
+      }
+    });
+
+    wrapper.append(label);
+    wrapper.append(select);
+    wrapper.append(info);
+    block.append(wrapper);
   } catch (error) {
     loading.textContent = 'Failed to load countries.';
   }

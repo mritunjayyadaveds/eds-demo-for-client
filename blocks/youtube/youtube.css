@@ -1,7 +1,8 @@
 .youtube-player {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%;
+  max-width: 720px;
+  padding-bottom: min(405px, 56.25%);
   border-radius: 12px;
   overflow: hidden;
   background: #000;
