@@ -1,5 +1,5 @@
 export default function decorate(block) {
-  const items = [...block.children];
+  const items = [...block.children].filter((row) => row.textContent.trim());
   block.textContent = '';
 
   const grid = document.createElement('div');

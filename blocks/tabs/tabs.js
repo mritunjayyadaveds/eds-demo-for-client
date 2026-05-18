@@ -1,5 +1,5 @@
 export default function decorate(block) {
-  const items = [...block.children];
+  const items = [...block.children].filter((row) => row.textContent.trim() || row.querySelector('picture'));
   block.textContent = '';
   block.classList.add('sei-tabs');
 
