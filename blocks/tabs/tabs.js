@@ -1,7 +1,7 @@
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
 export default function decorate(block) {
   const items = [...block.children].filter((row) => row.textContent.trim() || row.querySelector('picture'));
-  block.textContent = '';
-  block.classList.add('sei-tabs');
 
   const tabBar = document.createElement('div');
   tabBar.className = 'tabs-bar';
@@ -30,6 +30,7 @@ export default function decorate(block) {
     const panel = document.createElement('div');
     panel.className = 'tabs-panel';
     if (idx === 0) panel.classList.add('tabs-panel-active');
+    moveInstrumentation(row, panel);
 
     if (content) {
       const panelInner = document.createElement('div');
@@ -37,6 +38,7 @@ export default function decorate(block) {
 
       const mainContent = document.createElement('div');
       mainContent.className = 'tabs-panel-main';
+      moveInstrumentation(content, mainContent);
 
       const statsContent = document.createElement('div');
       statsContent.className = 'tabs-panel-stats';
@@ -65,7 +67,7 @@ export default function decorate(block) {
           }
         }
         if (!statsMode) {
-          mainContent.append(el.cloneNode(true));
+          mainContent.append(el);
         }
       });
 
@@ -85,5 +87,6 @@ export default function decorate(block) {
     panelContainer.append(panel);
   });
 
+  block.textContent = '';
   block.append(tabBar, panelContainer);
 }
