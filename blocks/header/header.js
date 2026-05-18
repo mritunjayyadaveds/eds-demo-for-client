@@ -100,10 +100,6 @@ function setupStickyHeader(wrapper) {
   }, { passive: true });
 }
 
-/**
- * loads and decorates the header block
- * @param {Element} block The header block element
- */
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
@@ -114,7 +110,6 @@ export default async function decorate(block) {
   nav.id = 'nav';
   nav.setAttribute('aria-expanded', 'false');
 
-  /* extract only .section divs from the fragment */
   const sections = [...fragment.querySelectorAll(':scope .section')];
   sections.forEach((section) => nav.append(section));
 
@@ -124,7 +119,7 @@ export default async function decorate(block) {
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  /* --- Brand --- */
+  /* Brand */
   const navBrand = nav.querySelector('.nav-brand');
   if (navBrand) {
     const brandLink = navBrand.querySelector('a');
@@ -136,7 +131,7 @@ export default async function decorate(block) {
     }
   }
 
-  /* --- Sections (nav links) --- */
+  /* Sections (nav links) */
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((li) => {
@@ -151,7 +146,7 @@ export default async function decorate(block) {
     });
   }
 
-  /* --- Tools (CTA area) --- */
+  /* Tools (CTA area) */
   const navTools = nav.querySelector('.nav-tools');
   if (navTools) {
     const links = navTools.querySelectorAll('a');
@@ -172,7 +167,7 @@ export default async function decorate(block) {
     }
   }
 
-  /* --- Hamburger --- */
+  /* Hamburger */
   const hamburger = document.createElement('button');
   hamburger.className = 'nav-hamburger';
   hamburger.setAttribute('type', 'button');
@@ -185,7 +180,7 @@ export default async function decorate(block) {
   hamburger.addEventListener('click', () => toggleMenu(nav));
   nav.append(hamburger);
 
-  /* --- Event listeners --- */
+  /* Event listeners */
   window.addEventListener('keydown', (e) => {
     if (e.code !== 'Escape') return;
     if (DESKTOP_MQ.matches) {
@@ -208,7 +203,7 @@ export default async function decorate(block) {
     if (navSections) closeAllDropdowns(navSections);
   });
 
-  /* --- Assemble --- */
+  /* Assemble */
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
