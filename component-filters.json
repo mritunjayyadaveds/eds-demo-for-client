@@ -42,5 +42,17 @@
       "youtube",
       "countries"
     ]
+  },
+  {
+    "id": "countries",
+    "components": [
+      "countries-item"
+    ]
+  },
+  {
+    "id": "youtube",
+    "components": [
+      "youtube-item"
+    ]
   }
 ]

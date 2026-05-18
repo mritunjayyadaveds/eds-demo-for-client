@@ -6,5 +6,6 @@
   "aemSitePath": "/content/eds-demo",
   "aemAssetsFolderPath": "/content/dam/eds-demo",
   "aemSiteName": "eds-demo",
-  "aemSiteTitle": "EDS Demo"
+  "aemSiteTitle": "EDS Demo",
+  "baseUrl": "https://main--eds-demo-for-client--mritunjayyadaveds.aem.live/"
 }

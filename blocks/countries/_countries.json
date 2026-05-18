@@ -9,7 +9,23 @@
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
               "name": "Countries",
-              "model": "countries"
+              "model": "countries",
+              "filter": "countries"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Countries Item",
+      "id": "countries-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Countries Item",
+              "model": "countries-item"
             }
           }
         }
@@ -18,9 +34,16 @@
   ],
   "models": [
     {
-      "id": "countries",
+      "id": "countries-item",
       "fields": []
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "countries",
+      "components": [
+        "countries-item"
+      ]
+    }
+  ]
 }

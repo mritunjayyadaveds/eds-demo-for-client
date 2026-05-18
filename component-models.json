@@ -180,7 +180,7 @@
     ]
   },
   {
-    "id": "countries",
+    "id": "countries-item",
     "fields": []
   },
   {
@@ -220,7 +220,7 @@
     ]
   },
   {
-    "id": "youtube",
+    "id": "youtube-item",
     "fields": [
       {
         "component": "text",
