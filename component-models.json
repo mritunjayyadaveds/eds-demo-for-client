@@ -220,13 +220,14 @@
     ]
   },
   {
-    "id": "youtube-item",
+    "id": "youtube",
     "fields": [
       {
         "component": "text",
         "valueType": "string",
         "name": "url",
         "label": "YouTube URL",
+        "description": "Paste a YouTube video link (e.g. https://www.youtube.com/watch?v=...)",
         "value": ""
       }
     ]

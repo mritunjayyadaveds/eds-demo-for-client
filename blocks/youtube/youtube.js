@@ -1,18 +1,25 @@
+function getVideoId(url) {
+  if (!url) return '';
+  if (url.includes('youtu.be/')) {
+    const [id] = url.split('youtu.be/')[1].split(/[?&]/);
+    return id;
+  }
+  if (url.includes('youtube.com/watch')) {
+    return new URL(url).searchParams.get('v') || '';
+  }
+  if (url.includes('youtube.com/embed/')) {
+    const [id] = url.split('youtube.com/embed/')[1].split(/[?&]/);
+    return id;
+  }
+  return '';
+}
+
 export default function decorate(block) {
   const link = block.querySelector('a');
-  if (!link) return;
+  const textContent = block.textContent.trim();
 
-  const url = link.href;
-  let videoId = '';
-
-  if (url.includes('youtu.be/')) {
-    [videoId] = url.split('youtu.be/')[1].split(/[?&]/);
-  } else if (url.includes('youtube.com/watch')) {
-    const params = new URL(url).searchParams;
-    videoId = params.get('v');
-  } else if (url.includes('youtube.com/embed/')) {
-    [videoId] = url.split('youtube.com/embed/')[1].split(/[?&]/);
-  }
+  const url = link ? link.href : textContent;
+  const videoId = getVideoId(url);
 
   if (!videoId) return;
 
