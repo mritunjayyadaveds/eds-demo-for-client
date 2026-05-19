@@ -88,11 +88,18 @@ function decorateDropdown(li) {
 }
 
 function setupStickyHeader(wrapper) {
+  const progressBar = document.createElement('div');
+  progressBar.className = 'nav-progress-bar';
+  wrapper.append(progressBar);
+
   let ticking = false;
   window.addEventListener('scroll', () => {
     if (!ticking) {
       window.requestAnimationFrame(() => {
         wrapper.classList.toggle('nav-scrolled', window.scrollY > 10);
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = scrollHeight > 0 ? (window.scrollY / scrollHeight) * 100 : 0;
+        progressBar.style.width = `${progress}%`;
         ticking = false;
       });
       ticking = true;
