@@ -43,14 +43,28 @@
   background: #fff;
 }
 
-.tabs-tab-active::after {
+.tabs-tab::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
   height: 3px;
+  width: 0;
   background: #00c4d4;
+}
+
+.tabs-tab-filling::after {
+  animation: tab-progress 6s linear forwards;
+}
+
+@keyframes tab-progress {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
 .tabs-tab-img {

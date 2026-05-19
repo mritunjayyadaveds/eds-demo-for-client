@@ -1,5 +1,59 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+const TAB_DURATION = 6000;
+
+function startAutoRotation(block) {
+  const tabs = block.querySelectorAll('.tabs-tab');
+  const panels = block.querySelectorAll('.tabs-panel');
+  if (tabs.length === 0) return;
+
+  let currentIdx = 0;
+  let interval = null;
+
+  function activateTab(idx) {
+    tabs.forEach((t) => {
+      t.classList.remove('tabs-tab-active');
+      t.classList.remove('tabs-tab-filling');
+    });
+    panels.forEach((p) => p.classList.remove('tabs-panel-active'));
+    tabs[idx].classList.add('tabs-tab-active');
+    tabs[idx].classList.add('tabs-tab-filling');
+    panels[idx].classList.add('tabs-panel-active');
+    currentIdx = idx;
+  }
+
+  function nextTab() {
+    const next = (currentIdx + 1) % tabs.length;
+    activateTab(next);
+  }
+
+  function startInterval() {
+    if (interval) clearInterval(interval);
+    interval = setInterval(nextTab, TAB_DURATION);
+  }
+
+  tabs.forEach((tab, idx) => {
+    tab.addEventListener('click', () => {
+      activateTab(idx);
+      startInterval();
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          activateTab(0);
+          startInterval();
+          observer.disconnect();
+        }
+      });
+    },
+    { threshold: 0.3 },
+  );
+  observer.observe(block);
+}
+
 export default function decorate(block) {
   const rows = [...block.children].filter((row) => row.textContent.trim() || row.querySelector('picture'));
 
@@ -77,17 +131,11 @@ export default function decorate(block) {
     if (statsContent.children.length > 0) panelInner.append(statsContent);
     panel.append(panelInner);
 
-    tab.addEventListener('click', () => {
-      block.querySelectorAll('.tabs-tab').forEach((t) => t.classList.remove('tabs-tab-active'));
-      block.querySelectorAll('.tabs-panel').forEach((p) => p.classList.remove('tabs-panel-active'));
-      tab.classList.add('tabs-tab-active');
-      panel.classList.add('tabs-panel-active');
-    });
-
     tabBar.append(tab);
     panelContainer.append(panel);
   });
 
   block.textContent = '';
   block.append(tabBar, panelContainer);
+  startAutoRotation(block);
 }
