@@ -12,7 +12,7 @@ function decorateColumns(nav) {
     const col = document.createElement('div');
     col.className = 'footer-col';
 
-    const heading = li.querySelector(':scope > strong');
+    const heading = li.querySelector('strong');
     if (heading) {
       const headEl = document.createElement('h3');
       headEl.className = 'footer-col-heading';
