@@ -41,11 +41,23 @@ function buildGridOverlay() {
 export default function decorate(block) {
   const rows = [...block.children];
   const hasImage = rows[0]?.querySelector('picture');
+  const videoLink = rows[0]?.querySelector('a[href$=".mp4"]');
 
   let picture = null;
+  let video = null;
   let contentRow = rows[0];
 
-  if (hasImage) {
+  if (videoLink) {
+    video = document.createElement('video');
+    video.className = 'hero-bg-video';
+    video.src = videoLink.href;
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.setAttribute('aria-hidden', 'true');
+    contentRow = rows[1] || rows[0];
+  } else if (hasImage) {
     picture = rows[0].querySelector('picture');
     contentRow = rows[1] || rows[0];
   }
@@ -56,11 +68,11 @@ export default function decorate(block) {
 
   block.textContent = '';
 
-  if (picture) {
+  if (video || picture) {
     const mediaWrapper = document.createElement('div');
     mediaWrapper.className = 'hero-media';
     mediaWrapper.setAttribute('aria-hidden', 'true');
-    mediaWrapper.append(picture);
+    mediaWrapper.append(video || picture);
     block.append(mediaWrapper);
   }
 

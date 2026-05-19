@@ -5,7 +5,7 @@
 
       <!-- Section 1: Hero -->
       <section jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/section/v1/section" model="section" modelFields="[name,style]" name="Hero">
-        <hero jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block" name="Hero" model="hero" image="/content/dam/eds-demo/hero.png" imageAlt="SEI Hero" text="&lt;p&gt;SEI Enterprise&lt;/p&gt;&lt;h1&gt;Financial value is created between the lines.&lt;/h1&gt;&lt;p&gt;Explore integrated solutions that align investing, operations, and insight at enterprise scale.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;SEI Assistant — Ask a question&lt;/a&gt;&lt;/p&gt;"/>
+        <hero jcr:primaryType="nt:unstructured" sling:resourceType="core/franklin/components/block/v1/block" name="Hero" model="hero" image="/content/dam/eds-demo/hero-video.mp4" imageAlt="SEI Hero" text="&lt;p&gt;SEI Enterprise&lt;/p&gt;&lt;h1&gt;Financial value is created between the lines.&lt;/h1&gt;&lt;p&gt;Explore integrated solutions that align investing, operations, and insight at enterprise scale.&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;#&quot;&gt;SEI Assistant — Ask a question&lt;/a&gt;&lt;/p&gt;"/>
       </section>
 
       <!-- Section 2: Executive Spotlight (dark) -->

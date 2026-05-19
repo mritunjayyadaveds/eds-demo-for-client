@@ -36,6 +36,14 @@
   opacity: 0.22;
 }
 
+.hero .hero-media .hero-bg-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+}
+
 /* ===== Grid Pattern Overlay ===== */
 .hero .hero-grid-overlay {
   position: absolute;
