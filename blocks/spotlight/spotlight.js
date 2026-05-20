@@ -20,6 +20,22 @@ function getVideoId(url) {
   return '';
 }
 
+function extractVideoUrl(row) {
+  // Check for YouTube link as <a> tag
+  const ytLink = row.querySelector('a[href*="youtube"], a[href*="youtu.be"]');
+  if (ytLink) return ytLink.href;
+
+  // Check text content for YouTube URL (xwalk renders field as text)
+  const cols = [...row.children];
+  const textCol = cols.find((col) => {
+    const text = col.textContent.trim();
+    return text.includes('youtube.com') || text.includes('youtu.be');
+  });
+  if (textCol) return textCol.textContent.trim();
+
+  return '';
+}
+
 function buildPlayButton() {
   const btn = document.createElement('button');
   btn.className = 'spotlight-card-play';
@@ -128,9 +144,16 @@ export default function decorate(block) {
     const h1 = row.querySelector('h1');
 
     if (picture) {
-      const label = cols[1]?.textContent?.trim() || cols[0]?.textContent?.trim() || '';
-      const link = row.querySelector('a[href*="youtube"], a[href*="youtu.be"]');
-      const videoUrl = link ? link.href : '';
+      // Extract video URL before getting label (avoid showing URL as label)
+      const videoUrl = extractVideoUrl(row);
+      // Get label — the text that isn't a YouTube URL
+      let label = '';
+      cols.forEach((col) => {
+        const text = col.textContent.trim();
+        if (text && !text.includes('youtube.com') && !text.includes('youtu.be') && !col.querySelector('picture')) {
+          label = text;
+        }
+      });
       cardData.push({
         picture, label, row, videoUrl,
       });
@@ -139,6 +162,8 @@ export default function decorate(block) {
     } else {
       const text = cols[1]?.textContent?.trim() || cols[0]?.textContent?.trim();
       if (!text) return;
+      // Skip YouTube URLs in non-picture rows too
+      if (text.includes('youtube.com') || text.includes('youtu.be')) return;
       if (!eyebrowText && !headlineEl && text.length < 60) {
         eyebrowText = text;
       } else {

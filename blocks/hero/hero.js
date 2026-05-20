@@ -39,30 +39,55 @@ function buildGridOverlay() {
 }
 
 function findVideoSource(block) {
+  // Check for link ending in .mp4
   const mp4Link = block.querySelector('a[href$=".mp4"]');
   if (mp4Link) return mp4Link.href;
 
+  // Check all links for .mp4 anywhere in href
   const linkMatch = [...block.querySelectorAll('a')].find(
     (link) => link.href && link.href.includes('.mp4'),
   );
   if (linkMatch) return linkMatch.href;
 
-  const textMatch = [...block.querySelectorAll('div > div')].find(
-    (div) => div.textContent.trim().includes('.mp4'),
-  );
-  if (textMatch) return textMatch.textContent.trim();
+  // Check for video element already present
+  const existingVideo = block.querySelector('video');
+  if (existingVideo) return existingVideo.src || existingVideo.querySelector('source')?.src;
+
+  // Check text content in divs for .mp4 path (xwalk renders field value as text)
+  const rows = [...block.children];
+  const textMatch = rows.find((row) => {
+    const text = row.textContent.trim();
+    return text.includes('.mp4') && !row.querySelector('h1, h2, h3');
+  });
+  if (textMatch) {
+    const text = textMatch.textContent.trim();
+    // Extract the path that contains .mp4
+    const match = text.match(/(\/[^\s]+\.mp4)/);
+    if (match) return match[1];
+    return text;
+  }
 
   return null;
 }
 
 export default function decorate(block) {
   const rows = [...block.children];
-  const hasImage = rows[0]?.querySelector('picture');
   const videoSrc = findVideoSource(block);
+  const hasImage = block.querySelector('picture');
 
   let picture = null;
   let video = null;
-  let contentRow = rows[0];
+
+  // Find the content row (the one with h1/text, not the media row)
+  let contentRow = null;
+
+  rows.forEach((row) => {
+    if (row.querySelector('h1') || row.querySelector('h2')) {
+      contentRow = row;
+    }
+  });
+
+  if (!contentRow) contentRow = rows[rows.length - 1] || rows[0];
 
   if (videoSrc) {
     video = document.createElement('video');
@@ -73,10 +98,8 @@ export default function decorate(block) {
     video.loop = true;
     video.playsInline = true;
     video.setAttribute('aria-hidden', 'true');
-    contentRow = rows[1] || rows[0];
   } else if (hasImage) {
-    picture = rows[0].querySelector('picture');
-    contentRow = rows[1] || rows[0];
+    picture = block.querySelector('picture');
   }
 
   const eyebrow = contentRow?.querySelector('p:first-child');
