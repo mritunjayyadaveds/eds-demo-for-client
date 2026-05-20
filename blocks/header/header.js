@@ -135,6 +135,14 @@ export default async function decorate(block) {
       brandLink.setAttribute('aria-label', 'SEI Home');
       const container = brandLink.closest('.button-container');
       if (container) container.className = '';
+      if (!brandLink.querySelector('img')) {
+        const logo = document.createElement('img');
+        logo.src = '/media/sei-logo.svg';
+        logo.alt = 'SEI';
+        logo.className = 'nav-logo-img';
+        brandLink.textContent = '';
+        brandLink.append(logo);
+      }
     }
   }
 
