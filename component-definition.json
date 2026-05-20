@@ -191,6 +191,7 @@
                   "model": "hero",
                   "image": "",
                   "imageAlt": "",
+                  "video": "",
                   "text": ""
                 }
               }
@@ -224,6 +225,7 @@
                   "model": "spotlight-item",
                   "image": "",
                   "imageAlt": "",
+                  "videoUrl": "",
                   "text": ""
                 }
               }

@@ -27,6 +27,7 @@
               "model": "spotlight-item",
               "image": "",
               "imageAlt": "",
+              "videoUrl": "",
               "text": ""
             }
           }
@@ -42,7 +43,7 @@
           "component": "reference",
           "valueType": "string",
           "name": "image",
-          "label": "Image",
+          "label": "Thumbnail Image",
           "multi": false,
           "metaData": {
             "editor": "aem-assets"
@@ -56,10 +57,18 @@
           "value": ""
         },
         {
+          "component": "text",
+          "valueType": "string",
+          "name": "videoUrl",
+          "label": "YouTube Video URL",
+          "description": "Paste a YouTube link (e.g. https://www.youtube.com/watch?v=...)",
+          "value": ""
+        },
+        {
           "component": "richtext",
           "name": "text",
           "value": "",
-          "label": "Text",
+          "label": "Label Text",
           "valueType": "string"
         }
       ]

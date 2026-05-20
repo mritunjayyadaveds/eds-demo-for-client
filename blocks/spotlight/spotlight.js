@@ -1,11 +1,62 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+function getVideoId(url) {
+  if (!url) return '';
+  if (url.includes('youtu.be/')) {
+    const [id] = url.split('youtu.be/')[1].split(/[?&]/);
+    return id;
+  }
+  if (url.includes('youtube.com/watch')) {
+    try {
+      return new URL(url).searchParams.get('v') || '';
+    } catch (e) {
+      return '';
+    }
+  }
+  if (url.includes('youtube.com/embed/')) {
+    const [id] = url.split('youtube.com/embed/')[1].split(/[?&]/);
+    return id;
+  }
+  return '';
+}
+
 function buildPlayButton() {
   const btn = document.createElement('button');
   btn.className = 'spotlight-card-play';
   btn.setAttribute('aria-label', 'Play video');
   btn.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true"><polygon points="5,3 19,12 5,21"></polygon></svg>';
   return btn;
+}
+
+function buildVideoModal() {
+  const overlay = document.createElement('div');
+  overlay.className = 'spotlight-video-modal';
+  overlay.innerHTML = `
+    <div class="spotlight-video-modal-content">
+      <button class="spotlight-video-modal-close" aria-label="Close video">&times;</button>
+      <div class="spotlight-video-modal-player"></div>
+    </div>
+  `;
+
+  overlay.querySelector('.spotlight-video-modal-close').addEventListener('click', () => {
+    overlay.classList.remove('spotlight-video-modal-active');
+    overlay.querySelector('.spotlight-video-modal-player').innerHTML = '';
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.classList.remove('spotlight-video-modal-active');
+      overlay.querySelector('.spotlight-video-modal-player').innerHTML = '';
+    }
+  });
+
+  return overlay;
+}
+
+function openVideoModal(modal, videoId) {
+  const player = modal.querySelector('.spotlight-video-modal-player');
+  player.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video"></iframe>`;
+  modal.classList.add('spotlight-video-modal-active');
 }
 
 function initCarousel(track) {
@@ -78,7 +129,11 @@ export default function decorate(block) {
 
     if (picture) {
       const label = cols[1]?.textContent?.trim() || cols[0]?.textContent?.trim() || '';
-      cardData.push({ picture, label, row });
+      const link = row.querySelector('a[href*="youtube"], a[href*="youtu.be"]');
+      const videoUrl = link ? link.href : '';
+      cardData.push({
+        picture, label, row, videoUrl,
+      });
     } else if (h2 || h1) {
       headlineEl = h2 || h1;
     } else {
@@ -110,6 +165,9 @@ export default function decorate(block) {
   }
 
   if (cardData.length > 0) {
+    const modal = buildVideoModal();
+    block.append(modal);
+
     const outer = document.createElement('div');
     outer.className = 'spotlight-carousel-outer';
     const track = document.createElement('div');
@@ -132,7 +190,25 @@ export default function decorate(block) {
       overlay.className = 'spotlight-card-overlay';
       cardEl.append(overlay);
 
-      cardEl.append(buildPlayButton());
+      const playBtn = buildPlayButton();
+      cardEl.append(playBtn);
+
+      const videoId = getVideoId(card.videoUrl);
+      if (videoId) {
+        cardEl.dataset.videoId = videoId;
+        cardEl.classList.add('spotlight-card-has-video');
+      }
+
+      playBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const id = cardEl.dataset.videoId;
+        if (id) openVideoModal(modal, id);
+      });
+
+      cardEl.addEventListener('click', () => {
+        const id = cardEl.dataset.videoId;
+        if (id) openVideoModal(modal, id);
+      });
 
       if (card.label) {
         const label = document.createElement('span');

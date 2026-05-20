@@ -38,19 +38,36 @@ function buildGridOverlay() {
   return overlay;
 }
 
+function findVideoSource(block) {
+  const mp4Link = block.querySelector('a[href$=".mp4"]');
+  if (mp4Link) return mp4Link.href;
+
+  const linkMatch = [...block.querySelectorAll('a')].find(
+    (link) => link.href && link.href.includes('.mp4'),
+  );
+  if (linkMatch) return linkMatch.href;
+
+  const textMatch = [...block.querySelectorAll('div > div')].find(
+    (div) => div.textContent.trim().includes('.mp4'),
+  );
+  if (textMatch) return textMatch.textContent.trim();
+
+  return null;
+}
+
 export default function decorate(block) {
   const rows = [...block.children];
   const hasImage = rows[0]?.querySelector('picture');
-  const videoLink = rows[0]?.querySelector('a[href$=".mp4"]');
+  const videoSrc = findVideoSource(block);
 
   let picture = null;
   let video = null;
   let contentRow = rows[0];
 
-  if (videoLink) {
+  if (videoSrc) {
     video = document.createElement('video');
     video.className = 'hero-bg-video';
-    video.src = videoLink.href;
+    video.src = videoSrc;
     video.autoplay = true;
     video.muted = true;
     video.loop = true;
