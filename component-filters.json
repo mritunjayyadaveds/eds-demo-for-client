@@ -18,7 +18,8 @@
       "fragment",
       "youtube",
       "countries",
-      "spotlight"
+      "spotlight",
+      "subscribe"
     ]
   },
   {
@@ -54,6 +55,12 @@
     "id": "spotlight",
     "components": [
       "spotlight-item"
+    ]
+  },
+  {
+    "id": "subscribe",
+    "components": [
+      "subscribe-item"
     ]
   }
 ]

@@ -1,6 +1,20 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
+  // Check for background image (authored via Universal Editor)
+  const bgImage = block.querySelector('picture img, img[src*="/content/dam"]');
+  if (bgImage) {
+    const section = block.closest('.section');
+    if (section) {
+      section.style.backgroundImage = `url('${bgImage.src}')`;
+      section.style.backgroundSize = 'cover';
+      section.style.backgroundPosition = 'center';
+      section.style.backgroundRepeat = 'no-repeat';
+    }
+    bgImage.closest('picture')?.remove();
+    bgImage.remove();
+  }
+
   const row = block.children[0];
   const cols = [...(row?.children || [])];
   const label = cols[0]?.textContent?.trim() || 'Email';

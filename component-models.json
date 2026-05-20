@@ -268,6 +268,40 @@
     ]
   },
   {
+    "id": "subscribe",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "backgroundImage",
+        "label": "Background Image",
+        "multi": false,
+        "metaData": {
+          "editor": "aem-assets"
+        }
+      }
+    ]
+  },
+  {
+    "id": "subscribe-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "title",
+        "label": "Label",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Button Text",
+        "value": ""
+      }
+    ]
+  },
+  {
     "id": "youtube",
     "fields": [
       {
