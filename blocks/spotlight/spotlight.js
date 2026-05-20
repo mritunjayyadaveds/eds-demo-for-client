@@ -162,11 +162,11 @@ export default function decorate(block) {
     } else {
       const text = cols[1]?.textContent?.trim() || cols[0]?.textContent?.trim();
       if (!text) return;
-      // Skip YouTube URLs in non-picture rows too
       if (text.includes('youtube.com') || text.includes('youtu.be')) return;
+      if (text.includes('undefined') || row.querySelector('a[href*="undefined"]')) return;
       if (!eyebrowText && !headlineEl && text.length < 60) {
         eyebrowText = text;
-      } else {
+      } else if (!descText) {
         descText = text;
       }
     }
