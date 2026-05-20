@@ -173,13 +173,6 @@ export default async function decorate(block) {
     const allLinks = [...links];
     if (allLinks.length >= 1) allLinks[0].classList.add('nav-login');
     if (allLinks.length >= 2) allLinks[1].classList.add('nav-contact');
-    if (allLinks.length >= 2) {
-      const sep = document.createElement('span');
-      sep.className = 'nav-sep';
-      sep.textContent = '/';
-      sep.setAttribute('aria-hidden', 'true');
-      allLinks[0].after(sep);
-    }
   }
 
   /* Hamburger */
