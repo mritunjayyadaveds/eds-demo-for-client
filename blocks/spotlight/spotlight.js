@@ -159,14 +159,22 @@ export default function decorate(block) {
       });
     } else if (h2 || h1) {
       headlineEl = h2 || h1;
+    } else if (row.querySelector('a') && !row.querySelector('a[href="#"]')) {
+      // Row with a link (broken image or video ref) — treat as card placeholder
+      const videoUrl = extractVideoUrl(row);
+      const label = cols[1]?.textContent?.trim() || cols[0]?.textContent?.trim() || '';
+      if (label && !label.includes('undefined')) {
+        cardData.push({
+          picture: null, label, row, videoUrl,
+        });
+      }
     } else {
       const text = cols[1]?.textContent?.trim() || cols[0]?.textContent?.trim();
       if (!text) return;
-      // Skip YouTube URLs in non-picture rows too
       if (text.includes('youtube.com') || text.includes('youtu.be')) return;
       if (!eyebrowText && !headlineEl && text.length < 60) {
         eyebrowText = text;
-      } else {
+      } else if (!descText) {
         descText = text;
       }
     }
