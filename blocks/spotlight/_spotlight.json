@@ -1,15 +1,30 @@
 {
   "definitions": [
     {
-      "title": "Hero",
-      "id": "hero",
+      "title": "Spotlight",
+      "id": "spotlight",
       "plugins": {
         "xwalk": {
           "page": {
             "resourceType": "core/franklin/components/block/v1/block",
             "template": {
-              "name": "Hero",
-              "model": "hero",
+              "name": "Spotlight",
+              "filter": "spotlight"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Spotlight Item",
+      "id": "spotlight-item",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Spotlight Item",
+              "model": "spotlight-item",
               "image": "",
               "imageAlt": "",
               "text": ""
@@ -21,7 +36,7 @@
   ],
   "models": [
     {
-      "id": "hero",
+      "id": "spotlight-item",
       "fields": [
         {
           "component": "reference",
@@ -37,7 +52,7 @@
           "component": "text",
           "valueType": "string",
           "name": "imageAlt",
-          "label": "Alt",
+          "label": "Image Alt Text",
           "value": ""
         },
         {
@@ -50,5 +65,12 @@
       ]
     }
   ],
-  "filters": []
+  "filters": [
+    {
+      "id": "spotlight",
+      "components": [
+        "spotlight-item"
+      ]
+    }
+  ]
 }

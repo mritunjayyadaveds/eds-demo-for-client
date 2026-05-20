@@ -17,7 +17,8 @@
       "columns",
       "fragment",
       "youtube",
-      "countries"
+      "countries",
+      "spotlight"
     ]
   },
   {
@@ -47,6 +48,12 @@
     "id": "countries",
     "components": [
       "countries-item"
+    ]
+  },
+  {
+    "id": "spotlight",
+    "components": [
+      "spotlight-item"
     ]
   }
 ]
