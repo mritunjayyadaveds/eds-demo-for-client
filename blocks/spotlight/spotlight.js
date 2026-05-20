@@ -132,9 +132,9 @@ export default function decorate(block) {
   block.textContent = '';
   block.classList.add('sei-reveal');
 
-  let eyebrowText = '';
+  let eyebrowRow = null;
   let headlineEl = null;
-  let descText = '';
+  let descRow = null;
   const cardData = [];
 
   rows.forEach((row) => {
@@ -144,9 +144,7 @@ export default function decorate(block) {
     const h1 = row.querySelector('h1');
 
     if (picture) {
-      // Extract video URL before getting label (avoid showing URL as label)
       const videoUrl = extractVideoUrl(row);
-      // Get label — the text that isn't a YouTube URL
       let label = '';
       cols.forEach((col) => {
         const text = col.textContent.trim();
@@ -164,17 +162,21 @@ export default function decorate(block) {
       if (!text) return;
       if (text.includes('youtube.com') || text.includes('youtu.be')) return;
       if (text.includes('undefined') || row.querySelector('a[href*="undefined"]')) return;
-      if (!eyebrowText && !headlineEl && text.length < 60) {
-        eyebrowText = text;
-      } else if (!descText) {
-        descText = text;
+      if (!eyebrowRow && !headlineEl && text.length < 60) {
+        eyebrowRow = row;
+      } else if (!descRow) {
+        descRow = row;
       }
     }
   });
 
   const eyebrow = document.createElement('div');
   eyebrow.className = 'spotlight-eyebrow';
-  eyebrow.textContent = eyebrowText;
+  if (eyebrowRow) {
+    const ebCol = eyebrowRow.children[1] || eyebrowRow.children[0];
+    eyebrow.textContent = ebCol?.textContent?.trim() || '';
+    moveInstrumentation(eyebrowRow, eyebrow);
+  }
   block.append(eyebrow);
 
   if (headlineEl) {
@@ -182,10 +184,12 @@ export default function decorate(block) {
     block.append(headlineEl);
   }
 
-  if (descText) {
+  if (descRow) {
     const desc = document.createElement('p');
     desc.className = 'spotlight-body';
-    desc.textContent = descText;
+    const descCol = descRow.children[1] || descRow.children[0];
+    desc.textContent = descCol?.textContent?.trim() || '';
+    moveInstrumentation(descRow, desc);
     block.append(desc);
   }
 
