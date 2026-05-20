@@ -24,7 +24,10 @@
             "resourceType": "core/franklin/components/block/v1/block/item",
             "template": {
               "name": "Card",
-              "model": "card"
+              "model": "card",
+              "image": "",
+              "imageAlt": "",
+              "text": ""
             }
           }
         }
@@ -41,6 +44,13 @@
           "name": "image",
           "label": "Image",
           "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "imageAlt",
+          "label": "Image Alt Text",
+          "value": ""
         },
         {
           "component": "richtext",

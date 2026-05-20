@@ -152,6 +152,13 @@
         "multi": false
       },
       {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt Text",
+        "value": ""
+      },
+      {
         "component": "richtext",
         "name": "text",
         "value": "",
