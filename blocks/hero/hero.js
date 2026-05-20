@@ -38,35 +38,28 @@ function buildGridOverlay() {
   return overlay;
 }
 
-function resolveVideoUrl(path) {
-  if (!path) return null;
-  // If it's already a full URL (external hosted video), use as-is
-  if (path.startsWith('http')) return path;
-  // For DAM paths, try to serve via AEM publish delivery
-  if (path.startsWith('/content/dam/')) {
-    // On aem.live/aem.page, DAM videos are served from the author's publish URL
-    // Use the path as-is — the admin API handles it
-    return path;
+function resolveVideoUrl(src) {
+  if (!src) return null;
+  if (src.startsWith('http')) return src;
+  if (src.includes('/content/dam/')) {
+    const filename = src.split('/').pop();
+    return `/media/${filename}`;
   }
-  return path;
+  return src;
 }
 
 function findVideoSource(block) {
-  // Check for link ending in .mp4
   const mp4Link = block.querySelector('a[href$=".mp4"]');
   if (mp4Link) return resolveVideoUrl(mp4Link.getAttribute('href'));
 
-  // Check all links for .mp4 anywhere in href
   const linkMatch = [...block.querySelectorAll('a')].find(
     (link) => link.href && link.href.includes('.mp4'),
   );
   if (linkMatch) return resolveVideoUrl(linkMatch.getAttribute('href'));
 
-  // Check for video element already present
   const existingVideo = block.querySelector('video');
   if (existingVideo) return existingVideo.src || existingVideo.querySelector('source')?.src;
 
-  // Check text content in divs for .mp4 path (xwalk renders field value as text)
   const rows = [...block.children];
   const textMatch = rows.find((row) => {
     const text = row.textContent.trim();
@@ -91,7 +84,6 @@ export default function decorate(block) {
   let picture = null;
   let video = null;
 
-  // Find the content row (the one with h1/text, not the media row)
   let contentRow = null;
 
   rows.forEach((row) => {
