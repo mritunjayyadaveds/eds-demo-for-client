@@ -19,7 +19,8 @@
       "youtube",
       "countries",
       "spotlight",
-      "subscribe"
+      "subscribe",
+      "tabs"
     ]
   },
   {
@@ -61,6 +62,12 @@
     "id": "subscribe",
     "components": [
       "subscribe-item"
+    ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "tab-item"
     ]
   }
 ]

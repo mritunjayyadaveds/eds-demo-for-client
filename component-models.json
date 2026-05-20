@@ -302,6 +302,35 @@
     ]
   },
   {
+    "id": "tab-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Tab Image / Logo",
+        "multi": false,
+        "metaData": {
+          "editor": "aem-assets"
+        }
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "imageAlt",
+        "label": "Image Alt Text",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Tab Content",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "youtube",
     "fields": [
       {
