@@ -38,16 +38,29 @@ function buildGridOverlay() {
   return overlay;
 }
 
+function resolveVideoUrl(path) {
+  if (!path) return null;
+  // If it's already a full URL (external hosted video), use as-is
+  if (path.startsWith('http')) return path;
+  // For DAM paths, try to serve via AEM publish delivery
+  if (path.startsWith('/content/dam/')) {
+    // On aem.live/aem.page, DAM videos are served from the author's publish URL
+    // Use the path as-is — the admin API handles it
+    return path;
+  }
+  return path;
+}
+
 function findVideoSource(block) {
   // Check for link ending in .mp4
   const mp4Link = block.querySelector('a[href$=".mp4"]');
-  if (mp4Link) return mp4Link.href;
+  if (mp4Link) return resolveVideoUrl(mp4Link.getAttribute('href'));
 
   // Check all links for .mp4 anywhere in href
   const linkMatch = [...block.querySelectorAll('a')].find(
     (link) => link.href && link.href.includes('.mp4'),
   );
-  if (linkMatch) return linkMatch.href;
+  if (linkMatch) return resolveVideoUrl(linkMatch.getAttribute('href'));
 
   // Check for video element already present
   const existingVideo = block.querySelector('video');
@@ -61,10 +74,10 @@ function findVideoSource(block) {
   });
   if (textMatch) {
     const text = textMatch.textContent.trim();
-    // Extract the path that contains .mp4
     const match = text.match(/(\/[^\s]+\.mp4)/);
-    if (match) return match[1];
-    return text;
+    if (match) return resolveVideoUrl(match[1]);
+    if (text.startsWith('http')) return text;
+    return resolveVideoUrl(text);
   }
 
   return null;
