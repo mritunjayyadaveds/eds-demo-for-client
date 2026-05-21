@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p9198-e1212741.adobeaemcloud.com/bin/franklin.delivery/mritunjayyadaveds/eds-demo-for-client/main"
+    url: "https://content.da.live/mritunjayyadaveds/eds-demo-for-client"
     type: "markup"
     suffix: ".html"
