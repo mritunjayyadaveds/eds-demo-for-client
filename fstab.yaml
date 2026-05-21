@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://content.da.live/mritunjayyadaveds/eds-demo-for-client"
+    url: "https://content.da.live/mritunjayyadaveds/eds-demo-for-client/dalive"
     type: "markup"
     suffix: ".html"
