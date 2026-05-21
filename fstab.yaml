@@ -1,3 +1,2 @@
 mountpoints:
-  /:
-    url: "https://content.da.live/mritunjayyadaveds/eds-demo-for-client/dalive"
+  /: https://content.da.live/mritunjayyadaveds/eds-demo-for-client/dalive
