@@ -14,18 +14,24 @@
 .accordion-pillar {
   background: #f9fafb;
   overflow: hidden;
-  min-height: 280px;
-  padding: 40px 32px;
+  height: 180px;
+  padding: 24px 20px;
   position: relative;
-  cursor: default;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
   border-right: 1px solid #e8eaed;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .accordion-pillar:last-child {
   border-right: none;
+}
+
+.accordion-pillar:hover {
+  height: auto;
+  min-height: 180px;
 }
 
 /* Gold background that scales up from bottom on hover */
@@ -46,7 +52,7 @@
 
 /* Title fades out and slides up on hover */
 .accordion-pillar-head {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: #101828;
   line-height: 1.3;
@@ -68,7 +74,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 32px;
+  padding: 20px;
   transform: translateY(100%);
   transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -78,28 +84,43 @@
 }
 
 .accordion-pillar-body {
-  font-size: 16px;
+  font-size: 14px;
   color: #101828;
-  line-height: 1.7;
+  line-height: 1.6;
   margin: 0;
 }
 
 @media (width >= 900px) {
-  .accordion-pillar {
-    min-height: 340px;
+  .accordion-pillar-head {
+    font-size: 20px;
   }
 
-  .accordion-pillar-head {
-    font-size: 22px;
+  .accordion-pillar-body {
+    font-size: 15px;
   }
 }
 
-@media (width < 600px) {
+@media (width < 900px) {
   .accordion-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
   .accordion-pillar {
-    min-height: 200px;
+    height: 150px;
+  }
+}
+
+@media (width < 600px) {
+  .accordion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .accordion-pillar {
+    height: 140px;
+    padding: 20px 16px;
+  }
+
+  .accordion-pillar-body {
+    font-size: 13px;
   }
 }
