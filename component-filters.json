@@ -20,7 +20,14 @@
       "countries",
       "spotlight",
       "subscribe",
-      "tabs"
+      "tabs",
+      "accordion"
+    ]
+  },
+  {
+    "id": "accordion",
+    "components": [
+      "accordion-item"
     ]
   },
   {

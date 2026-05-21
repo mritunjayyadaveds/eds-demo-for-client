@@ -55,7 +55,8 @@
         "countries",
         "spotlight",
         "subscribe",
-        "tabs"
+        "tabs",
+        "accordion"
       ]
     }
   ]
