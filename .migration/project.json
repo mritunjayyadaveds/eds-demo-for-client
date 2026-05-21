@@ -2,10 +2,10 @@
   "previewOrg": "mritunjayyadaveds",
   "previewSite": "eds-demo-for-client",
   "type": "xwalk",
-  "contentHostUrl": "author-p34454-e1943728.adobeaemcloud.com",
+  "contentHostUrl": "author-p9198-e1212741.adobeaemcloud.com",
   "aemSitePath": "/content/eds-demo",
-  "aemAssetsFolderPath": "/content/dam/eds-demo",
+  "aemAssetsFolderPath": "/content/dam/sei",
   "aemSiteName": "eds-demo",
   "aemSiteTitle": "EDS Demo",
-  "baseUrl": "https://main--eds-demo-for-client--mritunjayyadaveds.aem.live/"
+  "baseUrl": "https://main--eds-demo-for-client--mritunjayyadaveds.aem.live"
 }
