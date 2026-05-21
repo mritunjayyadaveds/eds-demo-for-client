@@ -263,14 +263,14 @@ main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
-  padding: 80px 0;
+  padding: 40px 0;
 }
 
 main .section.dark {
   background-color: #0f1119;
   color: #fff;
   margin: 0;
-  padding: 80px 0;
+  padding: 40px 0;
 }
 
 main .section.dark h2 {
@@ -288,12 +288,12 @@ main .section.dark a:any-link {
 main .section.grey {
   background-color: #f9fafb;
   margin: 0;
-  padding: 80px 0;
+  padding: 40px 0;
 }
 
 /* default section padding (no style metadata) */
 main .section:not(.hero-container, .spotlight-container, .light, .dark, .grey, .highlight) {
-  padding: 80px 0 0;
+  padding: 40px 0 0;
 }
 
 /* section headings */
@@ -329,7 +329,7 @@ main .section.two-columns {
   grid-template-columns: 1fr;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 40px;
+  padding: 40px;
 }
 
 main .section.two-columns > div {

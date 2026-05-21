@@ -6,7 +6,7 @@ main .section.dark.subscribe-container {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 40px;
+  padding: 40px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -121,7 +121,7 @@ main .section.dark.subscribe-container .default-content-wrapper > p:first-child 
   main .section.dark.subscribe-container {
     grid-template-columns: 1fr;
     gap: 40px;
-    padding: 48px 20px;
+    padding: 40px 20px;
   }
 
   main .section.dark.subscribe-container h2 {

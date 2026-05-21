@@ -1,7 +1,7 @@
 /* Cards section - Expert Insights style */
 main .section.grey.cards-container {
   background-color: #f9fafb;
-  padding: 48px 0;
+  padding: 40px 0;
 }
 
 main .section.grey.cards-container > .default-content-wrapper {
