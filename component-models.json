@@ -196,6 +196,25 @@
     ]
   },
   {
+    "id": "stats-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "value",
+        "label": "Value",
+        "description": "The stat number (e.g. $2.5M, 100+, 99%)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Label",
+        "description": "Description text below the number"
+      }
+    ]
+  },
+  {
     "id": "accordion-item",
     "fields": [
       {

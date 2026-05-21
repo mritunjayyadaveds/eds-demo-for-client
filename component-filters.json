@@ -21,7 +21,14 @@
       "spotlight",
       "subscribe",
       "tabs",
-      "accordion"
+      "accordion",
+      "stats"
+    ]
+  },
+  {
+    "id": "stats",
+    "components": [
+      "stats-item"
     ]
   },
   {
