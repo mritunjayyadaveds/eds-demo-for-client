@@ -148,6 +148,23 @@
     ]
   },
   {
+    "id": "accordion-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description"
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
@@ -192,42 +209,6 @@
         "name": "rows",
         "value": "",
         "label": "Rows"
-      }
-    ]
-  },
-  {
-    "id": "stats-item",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "value",
-        "label": "Value",
-        "description": "The stat number (e.g. $2.5M, 100+, 99%)"
-      },
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "label",
-        "label": "Label",
-        "description": "Description text below the number"
-      }
-    ]
-  },
-  {
-    "id": "accordion-item",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "string",
-        "name": "title",
-        "label": "Title"
-      },
-      {
-        "component": "richtext",
-        "valueType": "string",
-        "name": "description",
-        "label": "Description"
       }
     ]
   },
@@ -320,6 +301,25 @@
         "value": "",
         "label": "Label Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "stats-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "value",
+        "label": "Value",
+        "description": "The stat number (e.g. $2.5M, 100+, 99%)"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "label",
+        "label": "Label",
+        "description": "Description text below the number"
       }
     ]
   },

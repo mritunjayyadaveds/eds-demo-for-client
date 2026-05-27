@@ -26,12 +26,6 @@
     ]
   },
   {
-    "id": "stats",
-    "components": [
-      "stats-item"
-    ]
-  },
-  {
     "id": "accordion",
     "components": [
       "accordion-item"
@@ -70,6 +64,12 @@
     "id": "spotlight",
     "components": [
       "spotlight-item"
+    ]
+  },
+  {
+    "id": "stats",
+    "components": [
+      "stats-item"
     ]
   },
   {
