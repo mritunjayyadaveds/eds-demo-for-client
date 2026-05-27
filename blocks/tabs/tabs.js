@@ -55,7 +55,7 @@ function startAutoRotation(block) {
 }
 
 export default function decorate(block) {
-  const rows = [...block.children].filter((row) => row.textContent.trim() || row.querySelector('picture'));
+  const rows = [...block.children];
 
   const tabBar = document.createElement('div');
   tabBar.className = 'tabs-bar';

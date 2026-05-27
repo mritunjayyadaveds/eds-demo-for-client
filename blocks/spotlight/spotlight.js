@@ -159,7 +159,12 @@ export default function decorate(block) {
       headlineEl = h2 || h1;
     } else {
       const text = cols[1]?.textContent?.trim() || cols[0]?.textContent?.trim();
-      if (!text) return;
+      if (!text) {
+        cardData.push({
+          picture: null, label: '', row, videoUrl: '',
+        });
+        return;
+      }
       if (text.includes('youtube.com') || text.includes('youtu.be')) return;
       if (text.includes('undefined') || row.querySelector('a[href*="undefined"]')) return;
       if (!eyebrowRow && !headlineEl && text.length < 60) {
@@ -208,12 +213,14 @@ export default function decorate(block) {
       if (i === 0) cardEl.classList.add('spotlight-card--active');
       if (card.row) moveInstrumentation(card.row, cardEl);
 
-      const img = card.picture.querySelector('img');
-      if (img) {
-        img.className = 'spotlight-card-img';
-        img.setAttribute('loading', 'lazy');
+      if (card.picture) {
+        const img = card.picture.querySelector('img');
+        if (img) {
+          img.className = 'spotlight-card-img';
+          img.setAttribute('loading', 'lazy');
+        }
+        cardEl.append(card.picture);
       }
-      cardEl.append(card.picture);
 
       const overlay = document.createElement('div');
       overlay.className = 'spotlight-card-overlay';

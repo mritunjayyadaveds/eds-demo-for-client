@@ -1,7 +1,7 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  const items = [...block.children].filter((row) => row.textContent.trim());
+  const items = [...block.children];
 
   const grid = document.createElement('div');
   grid.className = 'accordion-grid';

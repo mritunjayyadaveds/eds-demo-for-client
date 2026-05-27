@@ -45,7 +45,7 @@ function animateValue(el, finalText) {
 }
 
 export default function decorate(block) {
-  const items = [...block.children].filter((row) => row.textContent.trim());
+  const items = [...block.children];
 
   const grid = document.createElement('div');
   grid.className = 'stats-grid';
