@@ -60,15 +60,13 @@ function getVideoId(url) {
   return '';
 }
 
-async function loadContentFragment(path) {
-  const resp = await fetch(`${path.replace(/\/content\/dam/, '/api/assets')}.json`);
+async function loadContentFragment(cfPath) {
+  const cleanPath = cfPath.replace(/\.html$/, '');
+  const apiPath = `${cleanPath}/jcr:content/data/master.json`;
+  const resp = await fetch(apiPath);
   if (resp.ok) {
     const json = await resp.json();
-    const elements = json?.properties?.elements;
-    if (elements) {
-      const urlField = elements.find((el) => el.name === 'url');
-      return urlField?.value || '';
-    }
+    return json?.url || '';
   }
   return '';
 }
