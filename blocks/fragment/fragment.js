@@ -44,9 +44,64 @@ export async function loadFragment(path) {
   return null;
 }
 
+function getVideoId(url) {
+  if (!url) return '';
+  if (url.includes('youtu.be/')) {
+    const [id] = url.split('youtu.be/')[1].split(/[?&]/);
+    return id;
+  }
+  if (url.includes('youtube.com/watch')) {
+    try { return new URL(url).searchParams.get('v') || ''; } catch (e) { return ''; }
+  }
+  if (url.includes('youtube.com/embed/')) {
+    const [id] = url.split('youtube.com/embed/')[1].split(/[?&]/);
+    return id;
+  }
+  return '';
+}
+
+async function loadContentFragment(path) {
+  const resp = await fetch(`${path.replace(/\/content\/dam/, '/api/assets')}.json`);
+  if (resp.ok) {
+    const json = await resp.json();
+    const elements = json?.properties?.elements;
+    if (elements) {
+      const urlField = elements.find((el) => el.name === 'url');
+      return urlField?.value || '';
+    }
+  }
+  return '';
+}
+
+function renderYouTube(block, url) {
+  const videoId = getVideoId(url);
+  if (!videoId) return;
+  const wrapper = document.createElement('div');
+  wrapper.className = 'youtube-player';
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+  iframe.setAttribute('frameborder', '0');
+  iframe.setAttribute('allowfullscreen', '');
+  iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+  iframe.setAttribute('title', 'YouTube video');
+  iframe.loading = 'lazy';
+  wrapper.append(iframe);
+  block.textContent = '';
+  block.append(wrapper);
+}
+
 export default async function decorate(block) {
   const link = block.querySelector('a');
   const path = link ? link.getAttribute('href') : block.textContent.trim();
+
+  if (path && path.includes('/content/dam/')) {
+    const url = await loadContentFragment(path);
+    if (url) {
+      renderYouTube(block, url);
+      return;
+    }
+  }
+
   const fragment = await loadFragment(path);
   if (fragment) {
     const fragmentSection = fragment.querySelector(':scope .section');
