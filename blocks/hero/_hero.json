@@ -29,7 +29,7 @@
           "valueType": "string",
           "name": "image",
           "label": "Background Image",
-          "description": "Fallback image if no video is set",
+          "description": "Fallback image if no video is set 10",
           "multi": false,
           "metaData": {
             "editor": "aem-assets"
